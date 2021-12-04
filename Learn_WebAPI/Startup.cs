@@ -43,6 +43,8 @@ namespace Learn_WebAPI
 
 			app.UseRouting();
 
+			app.UseStatusCodePages();
+
 			//app.UseEndpoints(endpoints =>
 			//{
 			//	endpoints.MapGet("/", async context =>
