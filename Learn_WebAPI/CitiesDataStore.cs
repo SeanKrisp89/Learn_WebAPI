@@ -26,13 +26,29 @@ namespace Learn_WebAPI
 						{
 							Id = 1,
 							Name = "Central Park",
-							Description = "The most visited urban park in the United States."
+							Description = "The most visited urban park in the United States.",
+							Address = new Poi_Address()
+							{
+								Id = 1,
+								Street = "3n402 Bonnie Lane",
+								City = "New York",
+								State = "NY",
+								Postal = 60175
+							}
 						},
 						new PointOfInterestDto()
 						{
 							Id = 2,
-							Name = "Central Park",
-							Description = "The most visited urban park in the United States."
+							Name = "Empire State Building",
+							Description = "The tallest building in the U.S. prior to the construction of the Sears Tower.",
+							Address = new Poi_Address()
+							{
+								Id = 2,
+								Street = "3n302 W Mary Lane",
+								City = "New York",
+								State = "NY",
+								Postal = 60174
+							}
 						}
 					}
 				},
@@ -47,13 +63,29 @@ namespace Learn_WebAPI
 						{
 							Id = 3,
 							Name = "Cathedral of Our Lady",
-							Description = "A Gothic style cathedral."
+							Description = "A Gothic style cathedral.",
+							Address = new Poi_Address()
+							{
+								Id = 4,
+								Street = "4E Mont du Roc",
+								City = "Antwerp",
+								State = "Some Belgium State",
+								Postal = 44330
+							}
 						},
 						new PointOfInterestDto()
 						{
 							Id = 4,
 							Name = "Antwerp Central Station",
-							Description = "The finest example of railway architecture in Belgium."
+							Description = "The finest example of railway architecture in Belgium.",
+							Address = new Poi_Address()
+							{
+								Id = 5,
+								Street = "87P Mallein de Sre",
+								City = "Antwerp",
+								State = "Another Belgium State",
+								Postal = 23994
+							}
 						}
 					}
 				},
