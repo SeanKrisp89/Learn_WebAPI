@@ -14,7 +14,7 @@ namespace Learn_WebAPI.Controllers
 	{
 		//We want to return JSON as the format of our data representation...
 		[HttpGet/*("api/cities")*/] // <-- this is "Attribute Routing"
-		public JsonResult GetCities()
+		public IActionResult GetCities()
 		{
 			////JsonResult returns a Jsonified version of whatever we pass into the constructor of a new JsonResult object
 			//return new JsonResult(
@@ -24,13 +24,23 @@ namespace Learn_WebAPI.Controllers
 			//		new{id = 2, Name = "Antwerp"}
 			//	});
 
-			return new JsonResult(CitiesDataStore.Current.Cities);
+			return Ok(CitiesDataStore.Current.Cities);
 		}
 
 		[HttpGet("{id}")] //Since again, we have the controller route ("api/cities") mapped up top at the controller level, we actually only need the {id} portion of the route attribute 
-		public JsonResult GetCity(int id)
+		public IActionResult GetCity(int id)
 		{
-			return new JsonResult(CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id));
+			//Find city to return
+			var cityToReturn = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id);
+
+			if(cityToReturn == null)
+			{
+				return NotFound();      //HttpStatus codes are very important. The client/consumer of the API needs to know the result/repsonse of its request. NotFound() will return a 404. Ok() will return either a 200 or 201.
+			}
+
+			return Ok(cityToReturn);
+
+			//return new JsonResult(CitiesDataStore.Current.Cities.SingleOrDefault(c => c.Id == id));
 		}
 
 
