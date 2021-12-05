@@ -62,6 +62,16 @@ namespace Learn_WebAPI.Controllers
 			//}
 			//HOWEVER - WE DON'T NEED TO WRITE THAT VALIDATION CHECK BECAUSE THE API CONTROLLER ATTRIBUTE AUTOMATICALLY CHECKS FOR THIS
 
+			if (pointOfInterest.Name == pointOfInterest.Description) //Some custom validation...
+			{
+				ModelState.AddModelError("Description", "Description cannot be the same as Name.");
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
 			var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
 			if(city == null)
