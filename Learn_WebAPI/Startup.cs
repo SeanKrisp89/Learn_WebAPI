@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -20,7 +21,11 @@ namespace Learn_WebAPI
 		// But, there are also application services which are application specific, for example a component to send mail.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddMvc(); //Here we're adding our ASP.NET MVC middleware. We then have to add this to the request pipeline... see line 41
+			services.AddMvc() //Here we're adding our ASP.NET MVC middleware. We then have to add this to the request pipeline... see line 41
+			.AddMvcOptions(o =>
+			{
+				o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter()); //Added support for returning XML content type/format in HttpResponses
+			});
 			services.AddControllers(options => options.EnableEndpointRouting = false);
 		}
 
